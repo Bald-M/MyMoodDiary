@@ -44,19 +44,20 @@ WORKDIR /app
 COPY --from=builder /app/target/*.jar /app/app.jar
 
 # Environment variables with defaults (modify as needed)
-ENV DB_HOST=your_db_ip \
-    DB_PORT=your_db_port \
-    DB_USER=your_db_user \
-    DB_PASSWORD=your_db_passwd \
-    DB_NAME=your_db_name
+# ENV DB_HOST=your_db_ip \
+#     DB_PORT=your_db_port \
+#     DB_USER=your_db_user \
+#     DB_PASSWORD=your_db_passwd \
+#     DB_NAME=your_db_name
 
 # Expose port
 EXPOSE 8080
 
 # Startup command with dynamic database configuration
-ENTRYPOINT ["sh", "-c", "java -jar /app/app.jar \
-  --spring.data.mongodb.host=${DB_HOST} \
-  --spring.data.mongodb.port=${DB_PORT} \
-  --spring.data.mongodb.database=${DB_NAME} \
-  --spring.data.mongodb.username=${DB_USER} \
-  --spring.data.mongodb.password=${DB_PASSWORD}"]
+# ENTRYPOINT ["sh", "-c", "java -jar /app/app.jar \
+#   --spring.data.mongodb.host=${DB_HOST} \
+#   --spring.data.mongodb.port=${DB_PORT} \
+#   --spring.data.mongodb.database=${DB_NAME} \
+#   --spring.data.mongodb.username=${DB_USER} \
+#   --spring.data.mongodb.password=${DB_PASSWORD}"]
+ENTRYPOINT ["sh", "-c", "java -jar /app/app.jar --spring.data.mongodb.uri=${SPRING_DATA_MONGODB_URI}"]

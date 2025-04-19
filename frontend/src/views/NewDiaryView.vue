@@ -80,7 +80,7 @@ const handleSubmit = (card: any) => {
   const dayOfMonth = new Date(card.date).getDate().toString()
   // Submit data to API endpoint
   axios({
-    url: '/api/moodCards',
+    url: '/moodCards',
     method: 'post',
     data: {
       month,

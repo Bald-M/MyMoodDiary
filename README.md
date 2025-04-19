@@ -18,8 +18,6 @@ cd cs732-assignment-Bald-M
 ```
 
 2. Start service
-
-**Before starting the service, please go to ./frontend/.env.production and update the ip to your server IP**
 ```bash
 docker compose up -d
 ```
@@ -32,7 +30,7 @@ docker compose up -d
 
 4. Shut the service
 ```bash
-docker compose down
+docker compose down -v
 ```
 
 ## Manul Deployment

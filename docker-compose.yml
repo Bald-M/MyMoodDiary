@@ -5,33 +5,20 @@ services:
   # MongoDB database service
   db:
     image: mongo:8.0.6  # Official MongoDB image with version pinning
-    container_name: my-mood-diary-database  # Custom container naming
+    container_name: my-mood-diary-database
     environment:
       TZ: Pacific/Auckland  # Timezone configuration
-      MONGO_INITDB_ROOT_USERNAME: 'admin'  # Root user credentials
+      MONGO_INITDB_ROOT_USERNAME: admin  # Root user credentials
       MONGO_INITDB_ROOT_PASSWORD: ABCabc-123
+      MONGO_INITDB_DATABASE: my-mood-diary
     volumes:
       - /root/container/mongodb/data:/data/db  # Persistent volume for data
-      - ./backend/db/init-mongo.js:/docker-entrypoint-initdb.d/init-mongo.js  # Initialization script
+      - ./db/init-mongo.js:/docker-entrypoint-initdb.d/init-mongo.js:ro  # Initialization script
     restart: always  # Automatic restart policy
     ports:
       - "27017:27017"  # Default MongoDB port mapping
     networks:
       - app-network  # Dedicated network for service discovery
-
-  # Frontend service (Vue.js application)
-  frontend:
-    build:
-      context: ./frontend  # Build context path
-      dockerfile: Dockerfile  # Frontend Dockerfile location
-    container_name: my-mood-diary-frontend
-    ports:
-      - "80:80"  # HTTP port mapping
-    environment:
-      TZ: Pacific/Auckland
-    restart: always
-    networks:
-      - app-network
 
   # Backend service (Spring Boot application)
   backend:
@@ -42,19 +29,54 @@ services:
     ports:
       - "8080:8080"  # Spring Boot default port
     environment:
-      TZ: Pacific/Auckland
-      DB_HOST: db  # MongoDB service name from docker-compose
-      DB_USER: user  # Application database user
-      DB_PORT: 27017
-      DB_PASSWORD: ABCabc-123
-      DB_NAME: my-mood-diary  # Target database name
+      - TZ=Pacific/Auckland
+      - SPRING_PROFILES_ACTIVE=prod
+      - SPRING_DATA_MONGODB_URI=mongodb://user:ABCabc-123@db:27017/my-mood-diary
+      # TZ: Pacific/Auckland
+      # DB_HOST: db  # MongoDB service name from docker-compose
+      # DB_USER: user  # Application database user
+      # DB_PORT: 27017
+      # DB_PASSWORD: ABCabc-123
+      # DB_NAME: my-mood-diary  # Target database name
     depends_on:
       - db  # Service dependency order
     restart: always
     networks:
       - app-network
 
+  # Frontend service (Vue.js application)
+  frontend:
+    build:
+      context: ./frontend  # Build context path
+      dockerfile: Dockerfile  # Frontend Dockerfile location
+      args:
+        VITE_APP_API_URL: /api
+    container_name: my-mood-diary-frontend
+    # ports:
+    #   - "80:80"  # HTTP port mapping
+    depends_on:
+      - backend
+    environment:
+      TZ: Pacific/Auckland
+    restart: always
+    networks:
+      - app-network
+
+  proxy:
+    image: nginx:1.26.2
+    container_name: my-mood-diary-proxy
+    volumes:
+      - ./proxy/nginx.conf:/etc/nginx/conf.d/default.conf:ro
+    ports:
+      - "80:80"
+    depends_on:
+      - frontend
+      - backend
+    restart: always
+    networks:
+      - app-network
+
 # Network configuration for inter-container communication
 networks:
-  app-network:  # Custom bridge network
-    driver: bridge  # Default network driver
+  app-network:
+    driver: bridge

@@ -1,6 +1,6 @@
-G:\cs732-assignment-backend-Bald-M\src\main\java\com\example\cs732assignmentbackendbaldm\config\CorsConfig.java
-G:\cs732-assignment-backend-Bald-M\src\main\java\com\example\cs732assignmentbackendbaldm\controller\MoodCardController.java
-G:\cs732-assignment-backend-Bald-M\src\main\java\com\example\cs732assignmentbackendbaldm\Cs732AssignmentBackendBaldMApplication.java
-G:\cs732-assignment-backend-Bald-M\src\main\java\com\example\cs732assignmentbackendbaldm\dao\MoodCardDao.java
-G:\cs732-assignment-backend-Bald-M\src\main\java\com\example\cs732assignmentbackendbaldm\pojo\MoodCard.java
-G:\cs732-assignment-backend-Bald-M\src\main\java\com\example\cs732assignmentbackendbaldm\service\MoodCardService.java
+G:\cs732-assignment-Bald-M\backend\src\main\java\com\example\cs732assignmentbackendbaldm\config\CorsConfig.java
+G:\cs732-assignment-Bald-M\backend\src\main\java\com\example\cs732assignmentbackendbaldm\controller\MoodCardController.java
+G:\cs732-assignment-Bald-M\backend\src\main\java\com\example\cs732assignmentbackendbaldm\Cs732AssignmentBackendBaldMApplication.java
+G:\cs732-assignment-Bald-M\backend\src\main\java\com\example\cs732assignmentbackendbaldm\dao\MoodCardDao.java
+G:\cs732-assignment-Bald-M\backend\src\main\java\com\example\cs732assignmentbackendbaldm\pojo\MoodCard.java
+G:\cs732-assignment-Bald-M\backend\src\main\java\com\example\cs732assignmentbackendbaldm\service\MoodCardService.java

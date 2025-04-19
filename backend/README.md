@@ -9,10 +9,10 @@
 You can run the application directly without creating a JAR first:
 ```bash
 # Windows
-mvnw.cmd spring-boot:run
+mvnw.cmd spring-boot:run -Dspring-boot.run.profiles=dev
 
 # macOS / Linux
-./mvnw spring-boot:run
+./mvnw spring-boot:run -Dspring-boot.run.profiles=dev
 ```
 This will:
 1. Download and install all dependencies.

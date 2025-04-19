@@ -14,7 +14,7 @@ const cards = computed(() => cardStore.cards)
 // Fetch cards data on component mount
 onMounted(() => {
   axios({
-    url: '/api/moodCards',
+    url: '/moodCards',
     method: 'get'
   }).then(res => {
     console.log(res.data)

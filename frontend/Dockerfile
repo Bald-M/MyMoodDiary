@@ -1,5 +1,7 @@
 # Use Node.js base image for the build stage
 FROM node:20.18.0 AS build
+ARG VITE_APP_API_URL
+ENV VITE_APP_API_URL=$VITE_APP_API_URL
 
 # Set the working directory inside the container
 WORKDIR /app
