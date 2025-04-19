@@ -28,7 +28,7 @@ services:
     ports:
       - "80:80"  # HTTP port mapping
     environment:
-      - TZ: Pacific/Auckland
+      TZ: Pacific/Auckland
     restart: always
     networks:
       - app-network
