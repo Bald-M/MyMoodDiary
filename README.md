@@ -13,8 +13,8 @@ A simple full-stack application for displaying and tracking daily moods with Vue
 
 1. Clone repository
 ```bash
-git clone https://github.com/UOA-CS732-S1-2025/cs732-assignment-Bald-M.git
-cd cs732-assignment-Bald-M
+git clone https://github.com/Bald-M/MyMoodDiary.git
+cd MyMoodDiary
 ```
 
 2. Start service
