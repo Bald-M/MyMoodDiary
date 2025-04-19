@@ -19,7 +19,7 @@ cd MyMoodDiary
 
 2. Start service
 ```bash
-docker compose up -d
+docker compose up --build
 ```
 
 3. Access application
